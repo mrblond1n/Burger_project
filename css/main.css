@@ -300,6 +300,59 @@ a {
 .unscroll .member__details {
   height: 100%; }
 
+.stock {
+  background: url("../img/bg/menu-bg.png") center center/cover no-repeat;
+  display: flex;
+  justify-content: space-between;
+  color: white; }
+  .stock .section-title {
+    margin: 105px; }
+
+.stock__item--meat {
+  background: url("../img/bg/menu-bg1.png") center center/cover no-repeat; }
+
+.stock__item--vegan {
+  background: url("../img/bg/menu-bg2.png") center center/cover no-repeat; }
+
+.stock__item--diet {
+  background: url("../img/bg/menu-bg3.png") center center/cover no-repeat; }
+
+.stock__item h3 {
+  position: relative;
+  bottom: 50px;
+  margin: 0;
+  color: white;
+  font-size: 40px;
+  transform: rotate(270deg);
+  white-space: nowrap; }
+
+.stock__list {
+  display: flex;
+  position: absolute;
+  right: 0px;
+  height: 100vh;
+  min-height: 650px; }
+  .stock__list .stock__item {
+    display: flex; }
+    .stock__list .stock__item--section {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      max-width: 80px; }
+    .stock__list .stock__item p {
+      font-size: 14px;
+      width: 0;
+      overflow: hidden;
+      background: rgba(47, 50, 52, 0.93); }
+
+.active p {
+  width: 540px !important;
+  padding: 60px 5.4%;
+  line-height: 1.75;
+  letter-spacing: 0.1px; }
+.active h3 {
+  color: #f9b43b; }
+
 .btn {
   padding: 10px 15px;
   border-radius: 5px;
