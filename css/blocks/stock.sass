@@ -5,6 +5,8 @@
   color: white
   .section-title
     margin: 105px
+    @media screen and (max-width: $laptops)
+      margin: 100px 20px
 
 .stock__item--meat
   background: url('../img/bg/menu-bg1.png') center center / cover no-repeat
@@ -28,24 +30,30 @@
   right: 0px
   height: 100vh
   min-height: 650px
-  .stock__item
-    display: flex
-    &--section
-      display: flex
-      flex-direction: column
-      justify-content: flex-end
-      max-width: 80px
-    p
-      font-size: 14px
-      width: 0
-      overflow: hidden
-      background: rgba(#2f3234, .93)
+  @media screen and (max-width: $laptops)
+    height: 1024px
+.stock__item
+  display: flex
+  p
+    display: block
+    font-size: 14px
+    width: 0px
+    overflow: hidden
+    background: rgba(#2f3234, .93)
+    padding: 0
+
+.stock__item--section
+  display: flex
+  flex-direction: column
+  justify-content: flex-end
+  max-width: 80px
 
 .active 
   p
-    width: 540px !important
-    padding: 60px 5.4%
+    width: 100%
+    max-width: 540px
     line-height: 1.75
     letter-spacing: 0.1px
+    padding: 60px 5.4%
   h3
     color: $yellow

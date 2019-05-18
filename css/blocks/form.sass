@@ -1,12 +1,18 @@
 .grid-container
-  max-width: 940px
-  margin: 0 auto
   display: grid
   grid-template-columns: 50% 50%
+  grid-gap: 20px
+  @media screen and (max-width: $laptops)
+    grid-template-columns: 100%
+    justify-content: center
   
 .form-order
-  padding: 100px 0
+  padding: 140px 0
   background: url('../img/bg/form-bg.png') center center / cover no-repeat
+.form
+  padding: 0 10%
+  @media screen and (max-width: $laptops)
+    padding: 0 18%
 
 .first-column
   display: grid
@@ -20,7 +26,10 @@
     font-size: 16px
   label
     color: #ffffff
-    margin-right: 20px
+    &:not(:last-of-type)
+      margin-right: 10px
+    &:not(:first-of-type)
+      margin-left: 10px
 .first-column__first-row
   display: grid
   grid-template-columns: 50% 50%
@@ -71,8 +80,6 @@ input[type="checkbox"]
     background: #e35028
 
 textarea
-  box-sizing: border-box
-  font-size: 16px
   margin-top: 5px
   resize: none
   width: 100%
@@ -82,6 +89,8 @@ textarea
 
 .button-group
   margin-left: 50%
+  @media screen and (max-width: $laptops)
+    margin: 0
 
 .btn--order
   margin-top: 20px
