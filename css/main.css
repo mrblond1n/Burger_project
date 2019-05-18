@@ -204,11 +204,19 @@ a {
   display: flex;
   margin-top: 30px;
   justify-content: center; }
+  @media screen and (max-width: 420px) {
+    .about__list {
+      flex-direction: column; } }
 
 .about__item {
   justify-content: center;
   width: 30%;
   margin-right: 10px; }
+  @media screen and (max-width: 420px) {
+    .about__item {
+      display: flex;
+      width: 100%;
+      align-items: center; } }
   .about__item:last-child {
     margin-right: 0; }
 
@@ -256,11 +264,21 @@ a {
   @media screen and (max-width: 768px) {
     .review__hover {
       text-align: center;
-      align-items: center; } }
+      align-items: center;
+      padding: 5px 5%; } }
+  @media screen and (max-width: 420px) {
+    .review__hover {
+      justify-content: center; } }
   .review__hover p {
     line-height: 1.8;
     padding-bottom: 15px;
     font-size: 14px; }
+    @media screen and (max-width: 768px) {
+      .review__hover p {
+        font-size: 13px; } }
+    @media screen and (max-width: 420px) {
+      .review__hover p {
+        display: none; } }
   .review__hover h3 {
     text-transform: uppercase;
     font-size: 14px; }
@@ -277,6 +295,17 @@ a {
     .reviews__item {
       width: 50%;
       height: 25%; } }
+
+.read-review {
+  display: none !important; }
+  @media screen and (max-width: 420px) {
+    .read-review {
+      display: block !important;
+      margin-top: 20px; } }
+
+@media screen and (max-width: 420px) {
+  .more-review {
+    display: none !important; } }
 
 .team {
   background: url("../img/bg/team-bg.png") center center/cover no-repeat;
@@ -386,6 +415,12 @@ a {
   font-size: 40px;
   transform: rotate(270deg);
   white-space: nowrap; }
+  @media screen and (max-width: 768px) {
+    .stock__item h3 {
+      font-size: 32px; } }
+  @media screen and (max-width: 420px) {
+    .stock__item h3 {
+      font-size: 26px; } }
 
 .stock__list {
   display: flex;
@@ -398,7 +433,8 @@ a {
       height: 1024px; } }
 
 .stock__item {
-  display: flex; }
+  display: flex;
+  max-width: 100%; }
   .stock__item p {
     display: block;
     font-size: 14px;
@@ -412,6 +448,12 @@ a {
   flex-direction: column;
   justify-content: flex-end;
   max-width: 80px; }
+  @media screen and (max-width: 768px) {
+    .stock__item--section {
+      width: 60px; } }
+  @media screen and (max-width: 420px) {
+    .stock__item--section {
+      width: 30px; } }
 
 .active p {
   width: 100%;
@@ -433,6 +475,11 @@ a {
   color: white;
   font-size: 14px;
   line-height: 24px; }
+  @media screen and (max-width: 420px) {
+    .footer {
+      flex-direction: column;
+      text-align: center;
+      padding: 10px 10px; } }
 
 .footer__contacts {
   display: flex;
@@ -474,6 +521,9 @@ address {
   @media screen and (max-width: 768px) {
     .form {
       padding: 0 18%; } }
+  @media screen and (max-width: 420px) {
+    .form {
+      padding: 0 5%; } }
 
 .first-column {
   display: grid; }
@@ -509,6 +559,9 @@ address {
 
 .second-column__second-row {
   margin: 15px 0 15px 0; }
+  @media screen and (max-width: 420px) {
+    .second-column__second-row {
+      text-align: center; } }
   .second-column__second-row label:before {
     content: "";
     margin-right: 10px;
@@ -526,14 +579,19 @@ address {
       border-color: white;
       background: #e35028; }
 
-.second-column__third-row label:before {
-  content: "";
-  margin-right: 10px;
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  background: white;
-  border: 3px solid white; }
+.second-column__third-row {
+  justify-content: center; }
+  .second-column__third-row label:before {
+    content: "";
+    margin-right: 10px;
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: white;
+    border: 3px solid white; }
+  @media screen and (max-width: 420px) {
+    .second-column__third-row {
+      text-align: center; } }
 
 input[type="checkbox"] {
   display: none; }
@@ -554,6 +612,9 @@ textarea {
   @media screen and (max-width: 768px) {
     .button-group {
       margin: 0; } }
+  @media screen and (max-width: 420px) {
+    .button-group {
+      text-align: center; } }
 
 .btn--order {
   margin-top: 20px; }

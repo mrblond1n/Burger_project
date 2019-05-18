@@ -13,6 +13,8 @@
   padding: 0 10%
   @media screen and (max-width: $laptops)
     padding: 0 18%
+  @media screen and (max-width: $phones)
+    padding: 0 5%
 
 .first-column
   display: grid
@@ -46,6 +48,8 @@
 
 .second-column__second-row
   margin: 15px 0 15px 0
+  @media screen and (max-width: $phones)
+    text-align: center
   label:before
     content: ''
     margin-right: 10px
@@ -64,6 +68,7 @@
       background: #e35028
 
 .second-column__third-row
+  justify-content: center
   label:before
     content: ''
     margin-right: 10px
@@ -72,6 +77,8 @@
     height: 6px
     background: #ffffff
     border: 3px solid #fff
+  @media screen and (max-width: $phones)
+    text-align: center
 
 input[type="checkbox"]
   display: none
@@ -91,6 +98,8 @@ textarea
   margin-left: 50%
   @media screen and (max-width: $laptops)
     margin: 0
+  @media screen and (max-width: $phones)
+    text-align: center
 
 .btn--order
   margin-top: 20px

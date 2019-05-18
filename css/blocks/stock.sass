@@ -23,6 +23,10 @@
   font-size: 40px
   transform: rotate(270deg)
   white-space: nowrap
+  @media screen and (max-width: $laptops)
+    font-size: 32px
+  @media screen and (max-width: $phones)
+    font-size: 26px
 
 .stock__list
   display: flex
@@ -34,6 +38,7 @@
     height: 1024px
 .stock__item
   display: flex
+  max-width: 100%
   p
     display: block
     font-size: 14px
@@ -47,9 +52,17 @@
   flex-direction: column
   justify-content: flex-end
   max-width: 80px
+  @media screen and (max-width: $laptops)
+    width: 60px
+  @media screen and (max-width: $phones)
+    width: 30px
 
 .active 
   p
+    // position: absolute
+    // right: 0
+    // z-index: 100
+    // height: 1024px
     width: 100%
     max-width: 540px
     line-height: 1.75

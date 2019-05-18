@@ -27,10 +27,18 @@
   @media screen and (max-width: $laptops)
     text-align: center
     align-items: center
+    padding: 5px 5% 
+  @media screen and (max-width: $phones)
+    justify-content: center
   p
     line-height: 1.8
     padding-bottom: 15px
     font-size: 14px
+    @media screen and (max-width: $laptops)
+      font-size: 13px
+    @media screen and (max-width: $phones)
+      display: none
+
   h3
     text-transform: uppercase
     font-size: 14px
@@ -46,5 +54,15 @@
   @media screen and (max-width: $laptops)
     width: 50%
     height: 25%
+
+.read-review
+  display: none !important
+  @media screen and (max-width: $phones)
+    display: block !important
+    margin-top: 20px
+
+.more-review
+  @media screen and (max-width: $phones)
+    display: none !important
 
 
