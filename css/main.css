@@ -273,9 +273,13 @@ a {
   color: white; }
 
 .member__name {
-  cursor: pointer; }
-  .member__name span {
-    margin-right: 10px; }
+  cursor: pointer;
+  margin-left: 20px;
+  margin-bottom: 5px; }
+
+.polygon {
+  position: relative;
+  top: 18px; }
 
 .member__photo {
   background: url("../img/people/aphex.png") center center/cover no-repeat;
@@ -283,13 +287,13 @@ a {
   width: 100px;
   flex: none;
   border-radius: 50%;
-  margin-right: 4%; }
+  margin-right: 6%; }
 
 .member__details {
   display: flex;
   position: relative;
-  bottom: 3px;
-  left: 16px;
+  left: 17px;
+  top: 10px;
   height: 0;
   overflow: hidden; }
 
@@ -300,14 +304,14 @@ a {
   font-size: 14px;
   max-width: 210px;
   line-height: 1.6;
-  margin-bottom: 30px; }
+  margin-bottom: 20px; }
   .member__disc b {
     margin-bottom: 15px; }
 
 .unscroll .member__name {
   color: #f9b43b; }
-  .unscroll .member__name span img {
-    transform: rotate(180deg); }
+.unscroll .polygon {
+  transform: rotate(180deg); }
 .unscroll .member__details {
   height: 100%; }
 
@@ -392,11 +396,11 @@ address {
 
 .social__item {
   margin-left: 20px; }
-  .social__item img {
-    filter: brightness(40%);
-    transition: 0.2s; }
-    .social__item img:hover {
-      filter: brightness(100%); }
+
+.social__icon {
+  transition: 0.2s; }
+  .social__icon:hover {
+    fill: white; }
 
 .grid-container {
   max-width: 940px;
