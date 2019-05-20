@@ -407,7 +407,7 @@ img {
   width: 3.125rem;
   height: 3.125rem;
   position: absolute;
-  bottom: 2.5rem;
+  bottom: -6.25rem;
   left: 50%;
   transform: translateX(-50%); }
 
@@ -419,13 +419,15 @@ img {
 
 .hero {
   background: url("../img/bg/hero-bg.png") center center/cover no-repeat;
-  position: relative; }
+  position: relative;
+  height: 100%;
+  padding-bottom: 100px; }
 
 .hero__container {
   justify-content: flex-start; }
 
 .hero__content {
-  flex: .8;
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center; }
@@ -571,7 +573,7 @@ img {
   @media screen and (max-width: 768px) {
     .team__container {
       padding: 0;
-      padding-top: 12.5rem;
+      padding-top: 6.25rem;
       width: 100%;
       text-align: center; } }
 
@@ -667,7 +669,7 @@ img {
 .stock__list {
   display: flex;
   position: relative;
-  height: 100%;
+  min-height: 650px;
   height: 100vh; }
 
 .stock__item {
@@ -686,6 +688,12 @@ img {
   flex-direction: column;
   justify-content: flex-end;
   max-width: 5rem; }
+  @media screen and (max-width: 768px) {
+    .stock__item--section {
+      max-width: 3.75rem; } }
+  @media screen and (max-width: 420px) {
+    .stock__item--section {
+      max-width: 2.5rem; } }
 
 .active p {
   width: 100%;
