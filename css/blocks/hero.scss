@@ -34,3 +34,12 @@
   line-height: 1;
   color: #fff;
 }
+
+.hero__content-image {
+  @include phones {
+    text-align: center;
+    img {
+      width: 80%;
+    }
+  }
+}

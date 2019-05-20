@@ -452,6 +452,12 @@ img {
   line-height: 1;
   color: #fff; }
 
+@media screen and (max-width: 420px) {
+  .hero__content-image {
+    text-align: center; }
+    .hero__content-image img {
+      width: 80%; } }
+
 .about {
   background: url("../img/bg/best-bg.png") center center/cover no-repeat; }
 
