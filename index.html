@@ -11,14 +11,14 @@
 
 <body>
 
-
   <div class="wrapper">
 
-
     <section class="section hero">
-      <div class="container hero__container">
+      <div class="hero__container container">
         <header class="header">
-          <img src="./img/icons/logo.svg" alt="mr burgers logo" class="logo">
+          <svg class="logo" width="100" height="100">
+            <use xlink:href="./img/sprite.svg#logo-icon"></use>
+          </svg>
           <div class="header__buttons">
             <nav class="menu">
               <ul class="menu__list">
@@ -45,8 +45,12 @@
                 </li>
               </ul>
             </nav>
-            <!-- <a href="" class="btn header__order-btn">Заказать</a> -->
             <button type="button" class="btn header__order-btn">Заказать</button>
+            <button type="button" class="menu-hamburger btn--none-decor">
+              <svg fill="#fff" width="24" height="22">
+                <use xlink:href="./img/sprite.svg#menu-hamburger"/>
+              </svg>
+            </button>
           </div>
         </header>
         <div class="hero__content">
@@ -56,12 +60,14 @@
           <div class="hero__content-text">
             <h1 class="section-title">Мы делаем</h1>
             <div class="hero__desc">
-              натуральные бургеры
+              натуральные <br> бургеры
             </div>
           </div>
         </div>
         <a href="#" class="down-arrow">
-          <img src="./img/icons/arrow-scroll.svg" alt="arrow-scroll">
+          <svg fill="#fff" width="30" height="20">
+            <use xlink:href="./img/sprite.svg#arrow-scroll-icon"></use>
+          </svg>
         </a>
       </div>
     </section>
@@ -74,7 +80,9 @@
         <ul class="about__list">
           <li class="about__item">
             <div class="about__item__pic">
-              <img src="./img/icons/meat.svg" class="about__item__pic-img" alt="meat icon">
+              <svg fill="#E35028" width="90" height="90">
+                <use xlink:href="./img/sprite.svg#meat-icon"></use>
+              </svg>
             </div> 
             <div class="about__item__desc">
               <h3>100% свежее мясо</h3>
@@ -85,7 +93,9 @@
           </li>
           <li class="about__item">
             <div class="about__item__pic">
-              <img src="./img/icons/hand.svg" class="about__item__pic-img" alt="meat icon">
+              <svg fill="#F9B43B" width="90" height="90">
+                <use xlink:href="./img/sprite.svg#hand-icon"></use>
+              </svg>
             </div> 
             <div class="about__item__desc">
               <h3>Ручная сборка</h3>
@@ -97,7 +107,9 @@
           </li>
           <li class="about__item">
             <div class="about__item__pic">
-              <img src="./img/icons/natural.svg" class="about__item__pic-img" alt="meat icon">
+              <svg fill="#8BC03F" width="90" height="90">
+                <use xlink:href="./img/sprite.svg#natural-icon"></use>
+              </svg>
             </div> 
             <div class="about__item__desc">
               <h3>Натуральные <br> ингредиенты</h3>
@@ -108,95 +120,343 @@
           </li>
         </ul>
       </div>
-    </section> 
+    </section>
+
+
+    <section class="section team">
+      <div class="team__container section">
+        <h2 class="section-title section-title--margin-none">Команда</h2>
+        <ul class="team__members">
+          <li class="member__card">
+            <svg fill="#f9b43b" width="9" height="6" class="polygon">
+              <use xlink:href="./img/sprite.svg#polygon"></use>
+            </svg>
+            <h5 class="member__name">Дэниэл Редклиф</h5>
+            <div class="member__details">
+              <div class="member__photo"></div>
+              <div class="member__disc">
+                <b>Оператор</b>
+                <p>
+                  С радостью поможет подобрать идеальный бургер и оформить заказ.
+                </p>
+              </div>
+            </div>
+          </li>
+          <li class="member__card unscroll">
+            <svg fill="#f9b43b" width="9" height="6" class="polygon">
+              <use xlink:href="./img/sprite.svg#polygon"></use>
+            </svg>
+            <h5 class="member__name">Ричард Джеймс</h5>
+            <div class="member__details">
+              <div class="member__photo"></div>
+              <div class="member__disc">
+                <b>Оператор</b>
+                <p>
+                  С радостью поможет подобрать идеальный бургер и оформить заказ.
+                </p>
+              </div>
+            </div>
+          </li>
+          <li class="member__card ">
+            <svg fill="#f9b43b" width="9" height="6" class="polygon">
+              <use xlink:href="./img/sprite.svg#polygon"></use>
+            </svg>
+            <h5 class="member__name">Джейк Финн</h5>
+            <div class="member__details">
+              <div class="member__photo"></div>
+              <div class="member__disc">
+                <b>Оператор</b>
+                <p>
+                  С радостью поможет подобрать идеальный бургер и оформить заказ.
+                </p>
+              </div>
+            </div>
+          </li>
+          <li class="member__card ">
+            <svg fill="#f9b43b" width="9" height="6" class="polygon">
+              <use xlink:href="./img/sprite.svg#polygon"></use>
+            </svg>
+            <h5 class="member__name">Николай Иванов</h5>
+            <div class="member__details">
+              <div class="member__photo"></div>
+              <div class="member__disc">
+                <b>Оператор</b>
+                <p>
+                  С радостью поможет подобрать идеальный бургер и оформить заказ.
+                </p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+
+    <section class="section stock">
+      <h2 class="section-title section-title--color-white">Меню</h2>
+      <div class="container-accordeon">
+        <ul class="stock__list">
+          <li class="stock__item active">
+            <a href="#" class="stock__item--section stock__item--meat">
+              <h3> Для мясоедов </h3>
+            </a>
+            <p>
+              Речевой акт редуцирует диалектический характер. Развивая эту тему, заимствование редуцирует конструктивный
+              механизм
+              сочленений. Лирический субъект начинает диссонансный анжамбеман. Наш современник стал особенно чутко относиться
+              к
+              слову,
+              однако механизм сочленений неустойчив. Модальность высказывания, как справедливо считает И.Гальперин,
+              пространственно
+              выбирает метр.
+              Речевой акт редуцирует диалектический характер. Развивая эту тему, заимствование редуцирует конструктивный
+              механизм
+              сочленений. Лирический субъект начинает диссонансный анжамбеман. Наш современник стал особенно чутко относиться
+              к
+              слову.
+            </p>
+          </li>
+          <li class="stock__item">
+            <a href="#" class="stock__item--section stock__item--vegan">
+              <h3> Вегетарианское </h3>
+            </a>
+            <p>
+              Речевой акт редуцирует диалектический характер. Развивая эту тему, заимствование редуцирует конструктивный
+              механизм
+              сочленений. Лирический субъект начинает диссонансный анжамбеман. Наш современник стал особенно чутко относиться
+              к
+              слову,
+              однако механизм сочленений неустойчив. Модальность высказывания, как справедливо считает И.Гальперин,
+              пространственно
+              выбирает метр.
+              Речевой акт редуцирует диалектический характер. Развивая эту тему, заимствование редуцирует конструктивный
+              механизм
+              сочленений. Лирический субъект начинает диссонансный анжамбеман. Наш современник стал особенно чутко относиться
+              к
+              слову.
+            </p>
+          </li>
+          <li class="stock__item">
+            <a href="#" class="stock__item--section stock__item--diet">
+              <h3> диетическое </h3>
+            </a>
+            <p>
+              Речевой акт редуцирует диалектический характер. Развивая эту тему, заимствование редуцирует конструктивный
+              механизм
+              сочленений. Лирический субъект начинает диссонансный анжамбеман. Наш современник стал особенно чутко относиться
+              к
+              слову,
+              однако механизм сочленений неустойчив. Модальность высказывания, как справедливо считает И.Гальперин,
+              пространственно
+              выбирает метр.
+              Речевой акт редуцирует диалектический характер. Развивая эту тему, заимствование редуцирует конструктивный
+              механизм
+              сочленений. Лирический субъект начинает диссонансный анжамбеман. Наш современник стал особенно чутко относиться
+              к
+              слову.
+            </p>
+          </li>
+        </ul>
+      </div>
+    </section>
 
 
 
     <section class="section reviews">
       <ul class="reviews__list">
         <li class="reviews__item review">
-          <img src="./img/reviews/photo-8.png" alt="first review" class="review__avatar">
+          <img src="./img/people/photo-8.png" alt="first review" class="review__avatar">
           <div class="review__hover">
             <h3>Константин Спилберг</h3>
               <p>
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos eveniet totam beatae, itaque, minus nesciunt quo earum quidem error doloremque sed ut et nobis vero eius optio possimus odit mollitia?
               </p>
-            <button type="button" class="btn btn--bg-black"> подробнее </button>
+            <button type="button" class="btn btn--bg-black more-review"> подробнее </button>
+            <button type="button" class="btn btn--bg-black read-review"> Читать отзыв </button>
         </li>
         <li class="reviews__item review">
-          <img src="./img/reviews/photo-6.png" alt="second review" class="review__avatar">
+          <img src="./img/people/photo-6.png" alt="second review" class="review__avatar">
           <div class="review__hover">
             <h3>Константин Спилберг</h3>
               <p>
                 Мысли все о них и о них, о них и о них. Нельзя устоять, невозможно забыть... Никогда не думал, что булочки могут быть
                 такими мягкими, котлетка такой сочной, а сыр таким расплавленным.
               </p>
-            <button type="button" class="btn btn--bg-black"> подробнее </button>
+            <button type="button" class="btn btn--bg-black more-review"> подробнее </button>
+            <button type="button" class="btn btn--bg-black read-review"> Читать отзыв </button>
           </div>
         </li>
         <li class="reviews__item review">
-          <img src="./img/reviews/photo-4.png" alt="third review" class="review__avatar">
+          <img src="./img/people/photo-4.png" alt="third review" class="review__avatar">
           <div class="review__hover">
             <h3>Константин Спилберг</h3>
               <p>
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos eveniet totam beatae, itaque, minus nesciunt quo earum quidem error doloremque sed ut et nobis vero eius optio possimus odit mollitia?
               </p>
-            <button type="button" class="btn btn--bg-black"> подробнее </button>
+            <button type="button" class="btn btn--bg-black more-review"> подробнее </button>
+            <button type="button" class="btn btn--bg-black read-review"> Читать отзыв </button>
           </div>
         </li>
         <li class="reviews__item review">
-          <img src="./img/reviews/photo-2.png" alt="fourth review" class="review__avatar">
+          <img src="./img/people/photo-2.png" alt="fourth review" class="review__avatar">
           <div class="review__hover">
             <h3>Константин Спилберг</h3>
               <p>
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos eveniet totam beatae, itaque, minus nesciunt quo earum quidem error doloremque sed ut et nobis vero eius optio possimus odit mollitia?
               </p>
-            <button type="button" class="btn btn--bg-black"> подробнее </button>
+            <button type="button" class="btn btn--bg-black more-review"> подробнее </button>
+            <button type="button" class="btn btn--bg-black read-review"> Читать отзыв </button>
           </div>
         </li>
         <li class="reviews__item review">
-          <img src="./img/reviews/photo-7.png" alt="fifth review" class="review__avatar">
+          <img src="./img/people/photo-7.png" alt="fifth review" class="review__avatar">
           <div class="review__hover">
             <h3>Константин Спилберг</h3>
               <p>
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos eveniet totam beatae, itaque, minus nesciunt quo earum quidem error doloremque sed ut et nobis vero eius optio possimus odit mollitia?
               </p>
-            <button type="button" class="btn btn--bg-black"> подробнее </button>
+            <button type="button" class="btn btn--bg-black more-review"> подробнее </button>
+            <button type="button" class="btn btn--bg-black read-review"> Читать отзыв </button>
           </div>
         </li>
         <li class="reviews__item review">
-          <img src="./img/reviews/photo-5.png" alt="sixth review" class="review__avatar">
+          <img src="./img/people/photo-5.png" alt="sixth review" class="review__avatar">
           <div class="review__hover">
             <h3>Константин Спилберг</h3>
               <p>
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos eveniet totam beatae, itaque, minus nesciunt quo earum quidem error doloremque sed ut et nobis vero eius optio possimus odit mollitia?
               </p>
-            <button type="button" class="btn btn--bg-black"> подробнее </button>
+            <button type="button" class="btn btn--bg-black more-review"> подробнее </button>
+            <button type="button" class="btn btn--bg-black read-review"> Читать отзыв </button>
           </div>
         </li>
         <li class="reviews__item review">
-          <img src="./img/reviews/photo-3.png" alt="seventh review" class="review__avatar">
+          <img src="./img/people/photo-3.png" alt="seventh review" class="review__avatar">
           <div class="review__hover">
             <h3>Константин Спилберг</h3>
               <p>
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos eveniet totam beatae, itaque, minus nesciunt quo earum quidem error doloremque sed ut et nobis vero eius optio possimus odit mollitia?
               </p>
-            <button type="button" class="btn btn--bg-black"> подробнее </button>
+            <button type="button" class="btn btn--bg-black more-review"> подробнее </button>
+            <button type="button" class="btn btn--bg-black read-review"> Читать отзыв </button>
           </div>
         </li>
         <li class="reviews__item review">
-          <img src="./img/reviews/photo-1.png" alt="eighth review" class="review__avatar">
+          <img src="./img/people/photo-1.png" alt="eighth review" class="review__avatar">
           <div class="review__hover">
             <h3>Константин Спилберг</h3>
               <p>
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos eveniet totam beatae, itaque, minus nesciunt quo earum quidem error doloremque sed ut et nobis vero eius optio possimus odit mollitia?
               </p>
-            <button type="button" class="btn btn--bg-black"> подробнее </button>
+            <button type="button" class="btn btn--bg-black more-review"> подробнее </button>
+            <button type="button" class="btn btn--bg-black read-review"> Читать отзыв </button>
           </div>
         </li>
       </ul>
     </section>
 
+    <section class="section form">
+      <div class="container">
+        <h1 class="section-title section-title--centered">Закажитe доставку</h1>
+        <form action="" class="form-order" method="POST">
+          <div class="form-order__first-column">
+            <div class="first-column__first-row first-column__row">
+              <label for="user-name">Имя
+                <input type="text" id="user-name" class="first-column__first-row__mid">
+              </label>
+            
+              <label for="user-phone">Телефон
+                <input type="text" id="user-phone" class="first-column__first-row__mid">
+              </label>
+            </div>
+            
+            <div class="first-column__second-row first-column__row">
+              <label for="user-street">Улица
+                <input type="text" id="user-street" class="first-column__second-row__long">
+              </label>
+            </div>
+            
+            <div class="first-column__third-row first-column__row">
+              <label for="user-house">Дом
+                <input type="text" id="user-house" class="first-column__third-row__short">
+              </label>
+              <label for="user-housing">Корпус
+                <input type="text" id="user-housing" class="first-column__third-row__short">
+              </label>
+              <label for="user-apart">Квартира
+                <input type="text" id="user-apart" class="first-column__third-row__short">
+              </label>
+              <label for="user-level">Этаж
+                <input type="text" id="user-level" class="first-column__third-row__short">
+              </label>
+            </div>
+          </div>
+          <div class="form-order__second-column">
+            <div class="second-column__first-row">
+              <label for="comment">Комментарий
+                <textarea name="" id="comment"></textarea>
+              </label>
+            </div>
+            <div class="second-column__second-row">
+              <input type="radio" name="pay-by" id="cash">
+              <label for="cash">Потребуется сдача</label>
+              <input type="radio" name="pay-by" id="card" checked>
+              <label for="card">Оплата по карте</label>
+            </div>
+            <div class="second-column__third-row">
+              <input type="checkbox" name="" id="dont-distrub">
+              <label for="dont-distrub">Не перезванивать</label>
+            </div>
+            <div class="button-group">
+              <button class="btn btn--order" type="submit">Заказать</button>
+              <button class="btn btn--bg-transparent" type="reset">Очистить</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="section map">
+      <img src="./img/content/map.png" alt="" width="100%" height="100%">
+      <footer class="footer">
+        <div class="footer__contacts">
+          <address>Санкт-Петербург, ул.Бабушкина, д.12/1, 15</address>
+          <a href="tel:+78123771377"><svg fill="#E45028" width="11px" height="11px"><use xlink:href="./img/sprite.svg#phone-icon"></use></svg> +7 (812) 377-13-77 </a>
+        </div>
+        <div class="footer__socials">
+          <ul class="social__list">
+            <li class="social__item">
+              <a href="#">
+                <svg fill="#5a5a5a" width="20" height="20" class="social__icon">
+                  <use xlink:href="./img/sprite.svg#vk-icon"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="social__item">
+              <a href="#">
+                <svg fill="#5a5a5a" width="20" height="20" class="social__icon">
+                  <use xlink:href="./img/sprite.svg#fb-icon"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="social__item">
+              <a href="#">
+                <svg fill="#5a5a5a" width="20" height="20" class="social__icon">
+                  <use xlink:href="./img/sprite.svg#inst-icon"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="social__item">
+              <a href="#">
+                <svg fill="#5a5a5a" width="20" height="20" class="social__icon">
+                  <use xlink:href="./img/sprite.svg#tw-icon"></use>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </footer>
+    </section>
 
   </div>
 
@@ -232,13 +492,5 @@
   </ul>
 
 
-
-
-
-
-
-
-
-  <!-- <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script> -->
 </body>
 </html>
