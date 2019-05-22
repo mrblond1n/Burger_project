@@ -89,7 +89,11 @@
   z-index: 1;
   justify-content: center;
   align-items: center;
+  padding-top: rem(70px);
   .menu__item-fullscreen {
+    @include phones {
+      margin-bottom: 25px;
+    }
     display: flex;
     margin-bottom: 60px;
     &:last-child:after  {
@@ -105,6 +109,9 @@
       height: 5px;
       background: #fff;
       border-radius: 50%;
+      @include phones {
+        top: 30px;
+      }
     }
   }
   .menu__link {
