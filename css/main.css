@@ -360,6 +360,9 @@ a {
 img {
   width: 100%; }
 
+.lock {
+  overflow: hidden; }
+
 .header {
   display: flex;
   align-items: center;
@@ -425,15 +428,14 @@ img {
   display: flex;
   overflow: hidden;
   flex-direction: column;
-  position: fixed;
-  top: 0;
   height: 100vh;
   width: 100%;
   background: rgba(47, 50, 52, 0.99);
   z-index: 1;
   justify-content: center;
   align-items: center;
-  padding-top: 4.375rem; }
+  padding-top: 4.375rem;
+  z-index: 11; }
   .menu-fullscreen__list .menu-fullscreen__item {
     display: flex;
     margin-bottom: 60px; }
@@ -464,7 +466,7 @@ img {
 
 .close-btn {
   display: block;
-  z-index: 3;
+  z-index: 12;
   position: fixed;
   right: 10px;
   top: 40px;
@@ -474,7 +476,7 @@ img {
 
 .menu-fullscreen__logo {
   display: block;
-  z-index: 3;
+  z-index: 12;
   position: fixed;
   left: 13px;
   top: 8px; }
