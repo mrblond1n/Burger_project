@@ -11,10 +11,6 @@
   align-items: center;
 }
 
-.header__order-btn {
-  margin-left: rem(15px);
-}
-
 .menu__list {
   display: flex;
   align-items: center;
@@ -23,14 +19,17 @@
   }
 }
 
+
 .menu__link {
   font-size: rem(13px);
   font-weight: 500;
+  color: #fff;
+  text-transform: uppercase;
 }
 
 .menu__item {
+  white-space: nowrap;
   margin-right: rem(10px);
-  text-transform: uppercase;
   display: flex;
   align-items: center;
   &:last-child {
@@ -50,26 +49,89 @@
   }
 }
 
-.menu__link {
-  font-size: rem(13px);
-  color: #fff;
-  text-transform: uppercase;
-}
-
 .down-arrow {
   display: block;
   width: rem(50px);
   height: rem(50px);
   position: absolute;
-  bottom: rem(-100px);
+  bottom: rem(10px);
   left: 50%;
   transform: translateX(-50%);
+  @media screen and (max-height: 625px) {
+    display: none;
+  }
 }
 
 .menu-hamburger {
   display: none;
+  cursor: pointer;
   @include laptops {
-    display: block
+    display: block;
   }
 }
 
+
+.menu-fullscreen__list {
+  display: flex;
+  position: fixed;
+  top: 0;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  background: rgba(#2f3234, .99);
+  justify-content: center;
+  align-items: center;
+  padding-top: rem(70px);
+  z-index: 11;
+  .menu-fullscreen__item {
+    @include phones {
+      margin-bottom: 25px;
+    }
+    display: flex;
+    margin-bottom: 60px;
+    &:last-child:after  {
+        background: transparent;
+    }
+    &:after {
+      content: '';
+      position: relative;
+      top: 50px;
+      right: 50%;
+      display: block;
+      width: 5px;
+      height: 5px;
+      background: #fff;
+      border-radius: 50%;
+      @include phones {
+        top: 30px;
+      }
+    }
+  }
+  .menu__link {
+    font-size: rem(22px);
+    font-weight: 400;
+  }
+}
+
+.deactive {
+  display: none;
+}
+
+.close-btn {
+  display: block;
+  z-index: 12;
+  position: fixed;
+  right: 10px;
+  top: 40px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.menu-fullscreen__logo {
+  display: block;
+  z-index: 12;
+  position: fixed;
+  left: 13px;
+  top: 8px;
+}
