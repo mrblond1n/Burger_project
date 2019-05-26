@@ -426,12 +426,12 @@ img {
 
 .menu-fullscreen__list {
   display: flex;
-  overflow: hidden;
+  position: fixed;
+  top: 0;
   flex-direction: column;
   height: 100vh;
   width: 100%;
   background: rgba(47, 50, 52, 0.99);
-  z-index: 1;
   justify-content: center;
   align-items: center;
   padding-top: 4.375rem;
@@ -921,14 +921,17 @@ address {
   align-items: center;
   justify-content: center; }
 
-.burger-slider__item {
+.burger-slider__item.active {
   display: flex;
   align-items: center;
   padding: 0 70px; }
   @media screen and (max-width: 768px) {
-    .burger-slider__item {
+    .burger-slider__item.active {
       flex-direction: column;
       padding: 0 40px; } }
+
+.burger-slider__item {
+  display: none; }
 
 .burger-slider__left-side, .burger-slider__right-side {
   display: flex;
