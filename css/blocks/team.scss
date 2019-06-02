@@ -6,7 +6,6 @@
 
 .team__container {
   display: flex;
-  justify-content: center;
   flex-direction: column;
   padding: rem(70px) rem(100px);
   opacity: 0.93;
@@ -27,6 +26,7 @@
 .team__members {
   margin-top: rem(12px);
   text-align: left;
+  transition: .4s;
   @include laptops {
     text-align: center;
   }
@@ -35,6 +35,7 @@
 .member__card {
   margin-top: 5px;
   color: #fff;
+  transition: .4s;
 }
 
 .member__name {
@@ -42,9 +43,9 @@
   cursor: pointer;
   margin-left: 7px;
   margin-bottom: 25px;
-  font-size: 1.7rem;
-  @include phones {
-    font-size: rem(16px);
+  font-size: 1rem;
+  @include laptops {
+    font-size: rem(24px);
     margin-bottom: 10px;
   }
 }
@@ -84,8 +85,13 @@
     margin-bottom: 15px;
   }
 }
+.member__card {
+  .polygon {
+    transition: .4s;
+  }
+}
 
-.unscroll {
+.member__card--active {
   .polygon {
     transform: rotate(180deg);
   }
