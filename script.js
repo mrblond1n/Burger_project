@@ -157,3 +157,7 @@ for (let i = 0; i < buttonRead.length; i++) {
   });
 
 };
+
+
+// ONE PAGE SCROLL
+

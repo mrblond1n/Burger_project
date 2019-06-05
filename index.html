@@ -40,8 +40,6 @@
       </svg>
     </button>
   </div>
-  
-
 
   <div class="wrapper">
 
@@ -103,8 +101,6 @@
         </a>
       </div>
     </section>
-
-
 
     <section class="section about">
       <div class="container">
@@ -628,7 +624,6 @@
 
     </section>
 
-
     <section class="section team">
       <div class="team__container section">
         <h2 class="section-title section-title--margin-none">Команда</h2>
@@ -696,7 +691,6 @@
         </ul>
       </div>
     </section>
-
 
     <section class="section menu">
       <h2 class="section-title section-title--color-white">Меню</h2>
@@ -767,8 +761,6 @@
         </ul>
       </div>
     </section>
-
-
 
     <section class="section reviews">
       <ul class="reviews__list">
@@ -1069,9 +1061,7 @@
       </footer>
     </section>
 
-
   </div>
-
 
   <ul class="fixed-menu">
     <li class="fixed-nav-menu__item">
@@ -1103,9 +1093,18 @@
     </li>
   </ul>
 
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script type="text/javascript" src="script.js"></script>
-<script type="text/javascript" src="form.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script type="text/javascript" src="script.js"></script>
+  <script type="text/javascript" src="form.js"></script>
+  <script src="https://unpkg.com/one-page-scroll/one-page-scroll.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var app = new onePageScroll({
+          el: document.querySelectorAll('section'),
+          time: 1300,
+          loop: true
+        });
+      });
+  </script>
 </body>
 </html>
