@@ -43,6 +43,8 @@
 
   <div class="wrapper">
 
+    <div class="maincontent">
+
     <section class="section hero">
       <div class="hero__container container">
         <header class="header">
@@ -94,7 +96,7 @@
             </div>
           </div>
         </div>
-        <a href="#" class="down-arrow">
+        <a href="#about" class="down-arrow">
           <svg fill="#fff" width="30" height="20">
             <use xlink:href="./img/sprite.svg#arrow-scroll-icon"></use>
           </svg>
@@ -103,7 +105,7 @@
     </section>
 
     <section class="section about">
-      <div class="container">
+      <div class="container" id="about">
         <h2 class="section-title section-title--color-black section-title--centered">Мы лучшие</h2>
         <ul class="about__list">
           <li class="about__item">
@@ -625,7 +627,7 @@
     </section>
 
     <section class="section team">
-      <div class="team__container section">
+      <div class="team__container">
         <h2 class="section-title section-title--margin-none">Команда</h2>
         <ul class="team__members">
           <li class="member__card">
@@ -694,7 +696,7 @@
 
     <section class="section menu">
       <h2 class="section-title section-title--color-white">Меню</h2>
-      <div class="menu__container section">
+      <div class="menu__container">
         <ul class="acco-menu__list">
           <li class="acco-menu__item">
             <a href="#" class="acco-menu__item--section acco-menu__item--meat">
@@ -1061,6 +1063,8 @@
       </footer>
     </section>
 
+    </div>
+
   </div>
 
   <ul class="fixed-menu">
@@ -1094,17 +1098,9 @@
   </ul>
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script type="text/javascript" src="script.js"></script>
-  <script type="text/javascript" src="form.js"></script>
-  <script src="https://unpkg.com/one-page-scroll/one-page-scroll.min.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var app = new onePageScroll({
-          el: document.querySelectorAll('section'),
-          time: 1300,
-          loop: true
-        });
-      });
-  </script>
+  <script type="text/javascript" src="./js/script.js"></script>
+  <script type="text/javascript" src="./js/form.js"></script>
+  <script src="./js/jquery.mousewheel.js"></script>
+  <script src="./js/onePageScroll.js"></script>
 </body>
 </html>
