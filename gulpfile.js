@@ -1,4 +1,4 @@
-const { src, dest, task, series, watch } = require('gulp'),
+const { src, dest, task, series, watch, parallel } = require('gulp'),
 rm = require('gulp-rm'),
 sass = require('gulp-sass'),
 concat = require('gulp-concat'),
@@ -6,100 +6,75 @@ browserSync = require('browser-sync').create(),
 reload = browserSync.reload,
 sassGlob = require('gulp-sass-glob'),
 autoprefixer = require('gulp-autoprefixer'),
-// px2rem = require('gulp-smile-px2rem'),
-// gcmq = require('gulp-group-css-media-queries'),
 cleanCSS = require('gulp-clean-css'),
 sourcemaps = require('gulp-sourcemaps'),
 babel = require('gulp-babel'),
 uglify = require('gulp-uglify'),
 svgo = require('gulp-svgo'),
-svgSprite = require('gulp-svg-sprite');
-
-
+svgSprite = require('gulp-svg-sprite'),
+gulpif = require('gulp-if'),
+env = process.env.NODE_ENV;
 sass.compiler = require('node-sass');
+const {DIST_PATH, SRC_PATH, STYLES_LIBS, SCRIPT_LIBS} = require('./gulp.config');
 
 task('clean', () => {
-  return src('dist/**/*', { read: false }).pipe(rm());
+  return src(`${DIST_PATH}/**/*`, { read: false }).pipe(rm());
 });
 
 //PAGE ADD
 
 task('copy:html', () => {
-  return src('src/*.html').pipe(dest('dist')).pipe(reload({stream: true}));
+  return src(`${SRC_PATH}/*.html`).pipe(dest(DIST_PATH)).pipe(reload({stream: true}));
 });
 
 //FONTS ADD
 
 task('copy:fonts', () => {
-  return src('src/fonts/*').pipe(dest('dist/fonts'));
+  return src(`${SRC_PATH}/fonts/*`).pipe(dest(`${DIST_PATH}/fonts`));
 })
 
 // IMAGES ADD
 
+task('copy:images', () => {
+  return src([`!${SRC_PATH}/img/icons/**/*`, `${SRC_PATH}/img/**/*`, `!${SRC_PATH}/img/*.svg`])
+    // .pipe(rm(`!${SRC_PATH}/img/icons`))
+    .pipe(dest(`${DIST_PATH}/img/`));
+})
+
 task('copy:svg', ()=> {
-  return src('src/img/*.svg').pipe(dest('dist/img'));
+  return src(`${SRC_PATH}/img/*.svg`).pipe(dest(`${DIST_PATH}/img`));
 });
-
-task('copy:bg', () => {
-  return src('src/img/bg/*.png').pipe(dest('dist/img/bg'));
-});
-
-task('copy:slider-img', () => {
-  return src('src/img/burger-slider/*.png').pipe(dest('dist/img/burger-slider'));
-});
-
-task('copy:content', () => {
-  return src('src/img/content/*.png').pipe(dest('dist/img/content'));
-});
-
-task('copy:people', () => {
-  return src('src/img/people/*.png').pipe(dest('dist/img/people'));
-});
-
-const styles = [
-  'node_modules/normalize.css/normalize.css',
-  // 'node_modules/fullpage.js/dist/fullpage.css',
-  'src/styles/main.scss'
-]
 
 task('styles', () => {
-  return src(styles)
-    .pipe(sourcemaps.init())
+  return src([...STYLES_LIBS, `${SRC_PATH}/styles/main.scss`])
+    .pipe(gulpif(env === 'dev', sourcemaps.init()))
     .pipe(concat('main.min.scss'))
     .pipe(sassGlob())
     .pipe(sass().on('error', sass.logError))
-    // .pipe(px2rem())
-    .pipe(autoprefixer({
-      // overrideBrowserslist: ['last 2 versions'],
+    .pipe(gulpif(env === 'dev', autoprefixer({
       cascade: false
-    }))
-    // .pipe(gcmq())
-    .pipe(cleanCSS())
-    .pipe(sourcemaps.write())
-    .pipe(dest('dist'))
+    })))
+    .pipe(gulpif(env === 'prod', cleanCSS()))
+    .pipe(gulpif(env === 'dev', sourcemaps.write()))
+    .pipe(dest(DIST_PATH))
     .pipe(reload({stream: true}));
 });
 
-const libs = [
-  'src/scripts/*.js',
-  // 'node_modules/fullpage.js/dist/fullpage.js'
-];
-
 task('scripts', () => {
-  return src(libs)
-    .pipe(sourcemaps.init())
+  return src([...SCRIPT_LIBS, `${SRC_PATH}/scripts/*.js`])
+    .pipe(gulpif(env === 'dev', sourcemaps.init()))
     .pipe(concat('main.min.js', {newLine: ';'}))
     .pipe(babel({
       presets: ['@babel/env']
     }))
-    .pipe(uglify())
-    .pipe(sourcemaps.write())
-    .pipe(dest('dist'))
+    .pipe(gulpif(env === 'dev', uglify()))
+    .pipe(gulpif(env === 'dev', sourcemaps.write()))
+    .pipe(dest(DIST_PATH))
     .pipe(reload({ stream: true }));
 });
 
 task('icons', () => {
-  return src('src/img/icons/*.svg')
+  return src(`${SRC_PATH}/img/icons/*.svg`)
     .pipe(svgo({
       plugins: [
         {removeAttrs: {attrs:['fill', 'stroke', 'style']}}
@@ -112,25 +87,36 @@ task('icons', () => {
         }
       }
     }))
-    .pipe(dest('dist/img'))
+    .pipe(dest(`${DIST_PATH}/img`))
 })
 
 task('server', function () {
   browserSync.init({
     server: {
-      baseDir: "./dist"
+      baseDir: `./${DIST_PATH}`
     },
     open: false
   });
 });
 
+task('watch', () => {
+  watch(`./${SRC_PATH}/styles/**/*.scss`, series('styles'));
+  watch(`./${SRC_PATH}/*.html`, series('copy:html'));
+  watch(`./${SRC_PATH}/scripts/*.js`, series('scripts'));
+  watch(`./${SRC_PATH}/img/icons/*.svg`, series('icons'));
+})
 
+task(
+  'default',
+  series('clean',
+  parallel('copy:html', 'copy:fonts', 'copy:svg', 'copy:images', 'styles', 'scripts', 'icons'), 
+  parallel('watch', 'server')
+  )
+);
 
-
-
-
-
-watch('./src/styles/**/*.scss', series('styles'));
-watch('./src/*.html', series('copy:html'));
-watch('./src/scripts/*.js', series('scripts'));
-task('default', series('clean', 'copy:html', 'copy:fonts', 'copy:svg', 'copy:bg', 'copy:slider-img', 'copy:content', 'copy:people', 'styles', 'scripts', 'icons', 'server'));
+task(
+  'build',
+  series('clean',
+  parallel('copy:html', 'copy:fonts', 'copy:svg','copy:images' , 'styles', 'scripts', 'icons')
+  )
+);
