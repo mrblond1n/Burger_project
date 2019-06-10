@@ -11,16 +11,16 @@ const switchActiveClassSideMenu = menuItemIndex => {
     .addClass('fixed-nav-menu__link--active')
     .siblings()
     .removeClass('fixed-nav-menu__link--active');
-}
+};
 
 
 
 const performTransition = sectionEq => {
     
-  if(inscroll) return
+  if(inscroll) return;
 
   const transitionDuration = 1000,
-    momentum = 300;
+    momentum = 100;
   
   inscroll = true;
 
@@ -31,11 +31,13 @@ const performTransition = sectionEq => {
     .siblings()
     .removeClass('activePage');
 
-  display.css({
-    transform: `translateY(${position})`
-  });
 
-  console.log(position);
+  let maxPos = -100 * (sections.length - 1);
+  if(parseInt(position) >= maxPos) {
+    display.css({
+      transform: `translateY(${position})`
+    });
+  };
 
   setTimeout(() => {
     switchActiveClassSideMenu(sectionEq);
@@ -50,12 +52,9 @@ const scrollToSection = direction => {
 
   if (direction === "next" && nextSection.length) {
     performTransition(nextSection.index());
-    console.log('next');
-    console.log(display.css('transform'))
   };
   if (direction === "prev" && prevSection.length) {
     performTransition(prevSection.index());
-    console.log('prev');
   };
 };
 
@@ -66,7 +65,7 @@ $('.wrapper').on({
 
     scrollToSection(direction);
   },
-  touchmove: e=> e.preventDefault()
+  touchmove: e => e.preventDefault()
 });
 
 $(document).on('keydown', e => {
@@ -77,7 +76,7 @@ $(document).on('keydown', e => {
     case 38:
       scrollToSection('prev')
       break;
-  }
+  };
 });
 
 $("[data-scroll-to]").on('click', e => {
@@ -95,6 +94,6 @@ if (isMobile) {
 
       scrollToSection(nextOrPrev)
     }
-  })
-}
+  });
+};
 
