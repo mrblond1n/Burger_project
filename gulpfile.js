@@ -46,7 +46,7 @@ task('copy:svg', ()=> {
 });
 
 task('styles', () => {
-  return src([...STYLES_LIBS, `${SRC_PATH}/styles/main.scss`])
+  return src([...STYLES_LIBS, `${SRC_PATH}/styles/*.scss`, `${SRC_PATH}/styles/**/*.scss`])
     .pipe(gulpif(env === 'dev', sourcemaps.init()))
     .pipe(concat('main.min.scss'))
     .pipe(sassGlob())
