@@ -1,5 +1,7 @@
 const sections = $('.section'),
-display = $('.maincontent');
+display = $('.maincontent'),
+md = new MobileDetect(window.navigator.userAgent),
+isMobile = md.mobile();
 
 let inscroll = false;
 
@@ -33,6 +35,8 @@ const performTransition = sectionEq => {
     transform: `translateY(${position})`
   });
 
+  console.log(position);
+
   setTimeout(() => {
     switchActiveClassSideMenu(sectionEq);
     inscroll = false;
@@ -46,22 +50,23 @@ const scrollToSection = direction => {
 
   if (direction === "next" && nextSection.length) {
     performTransition(nextSection.index());
+    console.log('next');
+    console.log(display.css('transform'))
   };
   if (direction === "prev" && prevSection.length) {
     performTransition(prevSection.index());
+    console.log('prev');
   };
 };
 
-$('.wrapper').on('wheel', e => {
-  const deltaY = e.originalEvent.deltaY;
+$('.wrapper').on({
+  wheel: e => {
+    const deltaY = e.originalEvent.deltaY,
+    direction = deltaY > 0 ? "next" : "prev";
 
-  if (deltaY > 0) {
-    //next
-    scrollToSection('next');
-  } else if (deltaY < 0) {
-    //prev
-    scrollToSection('prev');
-  };
+    scrollToSection(direction);
+  },
+  touchmove: e=> e.preventDefault()
 });
 
 $(document).on('keydown', e => {
@@ -82,3 +87,14 @@ $("[data-scroll-to]").on('click', e => {
 
   performTransition(target);
 });
+
+if (isMobile) {
+  $(window).swipe({
+    swipe: function (event, direction, distance, duration, fingerCount, fingerData) {
+      const nextOrPrev = direction === 'up' ? 'next' : 'prev';
+
+      scrollToSection(nextOrPrev)
+    }
+  })
+}
+
