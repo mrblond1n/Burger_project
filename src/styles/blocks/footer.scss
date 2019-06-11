@@ -5,7 +5,7 @@
   position: absolute;
   bottom: -5px;
   padding: rem(10px) rem(80px);
-  background: url("../img/bg/footer-bg.png");
+  background: url("./img/bg/footer-bg.png");
   color: white;
   line-height: rem(24px);
   @include phones {
@@ -38,8 +38,9 @@ address {
 }
 
 .social__icon {
+  opacity: .5;
   transition: .2s;
   &:hover {
-    fill: #fff;
+    opacity: 1;
   }
 }

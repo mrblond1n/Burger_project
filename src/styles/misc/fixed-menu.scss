@@ -33,14 +33,14 @@
     border-radius: 50%;
     width: 0;
     height: 0;
-    border: 1px solid white;
+    border: 1px solid $orange;
     opacity: 0;
     transition: .4s;
   }
   &:after {
     width: 6px;
     height: 6px;
-    background: #fff;
+    background: $orange;
   }
   &:hover:before {
     width: 14px;
@@ -71,13 +71,12 @@
     border-radius: 50%;
     width: 14px;
     height: 14px;
-    border: 1px solid #fff;
+    border: 1px solid $orange;
     opacity: 1;
-    transition: 0s;
   }
   &:after {
     width: 6px;
     height: 6px;
-    background: #fff;
+    background: $orange;
   }
 }

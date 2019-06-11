@@ -20,7 +20,7 @@ const performTransition = sectionEq => {
   if(inscroll) return;
 
   const transitionDuration = 1000,
-    momentum = 100;
+    momentum = 300;
   
   inscroll = true;
 

@@ -15,7 +15,10 @@ svgSprite = require('gulp-svg-sprite'),
 gulpif = require('gulp-if'),
 env = process.env.NODE_ENV;
 sass.compiler = require('node-sass');
-const {DIST_PATH, SRC_PATH, STYLES_LIBS, SCRIPT_LIBS} = require('./gulp.config');
+const {DIST_PATH, 
+  SRC_PATH, 
+  STYLES_LIBS, 
+  SCRIPT_LIBS} = require('./gulp.config');
 
 task('clean', () => {
   return src(`${DIST_PATH}/**/*`, { read: false }).pipe(rm());
@@ -24,29 +27,36 @@ task('clean', () => {
 //PAGE ADD
 
 task('copy:html', () => {
-  return src(`${SRC_PATH}/*.html`).pipe(dest(DIST_PATH)).pipe(reload({stream: true}));
+  return src(`${SRC_PATH}/*.html`)
+    .pipe(dest(DIST_PATH))
+    .pipe(reload({stream: true}));
 });
 
 //FONTS ADD
 
 task('copy:fonts', () => {
-  return src(`${SRC_PATH}/fonts/*`).pipe(dest(`${DIST_PATH}/fonts`));
+  return src(`${SRC_PATH}/fonts/*`)
+    .pipe(dest(`${DIST_PATH}/fonts`));
 })
 
 // IMAGES ADD
 
 task('copy:images', () => {
-  return src([`!${SRC_PATH}/img/icons/**/*`, `${SRC_PATH}/img/**/*`, `!${SRC_PATH}/img/*.svg`])
-    // .pipe(rm(`!${SRC_PATH}/img/icons`))
+  return src([`!${SRC_PATH}/img/icons/**/*`,
+  `${SRC_PATH}/img/**/*`, 
+  `!${SRC_PATH}/img/*.svg`])
     .pipe(dest(`${DIST_PATH}/img/`));
 })
 
 task('copy:svg', ()=> {
-  return src(`${SRC_PATH}/img/*.svg`).pipe(dest(`${DIST_PATH}/img`));
+  return src(`${SRC_PATH}/img/*.svg`)
+    .pipe(dest(`${DIST_PATH}/img`));
 });
 
 task('styles', () => {
-  return src([...STYLES_LIBS, `${SRC_PATH}/styles/*.scss`, `${SRC_PATH}/styles/**/*.scss`])
+  return src([...STYLES_LIBS,
+    `${SRC_PATH}/styles/*.scss`, 
+    `${SRC_PATH}/styles/**/*.scss`])
     .pipe(gulpif(env === 'dev', sourcemaps.init()))
     .pipe(concat('main.min.scss'))
     .pipe(sassGlob())
@@ -109,7 +119,8 @@ task('watch', () => {
 task(
   'default',
   series('clean',
-  parallel('copy:html', 'copy:fonts', 'copy:svg', 'copy:images', 'styles', 'scripts', 'icons'), 
+  parallel('copy:html', 'copy:fonts', 'copy:svg', 
+  'copy:images', 'styles', 'scripts', 'icons'), 
   parallel('watch', 'server')
   )
 );
@@ -117,6 +128,7 @@ task(
 task(
   'build',
   series('clean',
-  parallel('copy:html', 'copy:fonts', 'copy:svg','copy:images' , 'styles', 'scripts', 'icons')
+  parallel('copy:html', 'copy:fonts', 'copy:svg',
+  'copy:images' , 'styles', 'scripts', 'icons')
   )
 );
