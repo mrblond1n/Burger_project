@@ -1,5 +1,4 @@
-(function() {
-  const navMenuBtn = document.body.querySelector('.menu-hamburger'),
+;const navMenuBtn = document.body.querySelector('.menu-hamburger'),
     navMenuBtnClose = document.body.querySelector('#close-btn__nav-menu'),
     navMenuList = document.body.querySelector('.nav-menu-fullscreen');
 
@@ -12,4 +11,3 @@
     navMenuList.classList.add('deactive');
     document.body.classList.remove('lock');
   });
-})()

@@ -1,4 +1,4 @@
-const sections = $('.section'),
+;const sections = $('.section'),
 display = $('.maincontent'),
 md = new MobileDetect(window.navigator.userAgent),
 isMobile = md.mobile();
@@ -92,7 +92,7 @@ if (isMobile) {
     swipe: function (event, direction, distance, duration, fingerCount, fingerData) {
       const nextOrPrev = direction === 'up' ? 'next' : 'prev';
 
-      scrollToSection(nextOrPrev)
+      scrollToSection(nextOrPrev);
     }
   });
 };

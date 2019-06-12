@@ -1,4 +1,128 @@
 .ourWork {
   background: url('./img/bg/ourWork-bg.png') center (center / cover) no-repeat;
   text-align: center;
+  svg {
+    width: 30px;
+    height: 30px;
+  }
+  button {
+    cursor: pointer;
+  }
+}
+
+#yt-player {
+  max-width: 660px;
+  max-height: 405px;
+}
+
+.player {
+  position: relative;
+  display: inline-block;
+
+  &.hidden {
+    opacity: 0;
+    transition: opacity .3s;
+  }
+}
+
+.player__splash {
+  content: "";
+  position: absolute;
+  max-width: 660px;
+  height: 405px;
+  margin: 0 auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('./img/content/splash-screen.png') center center / cover no-repeat;
+  cursor: pointer;
+}
+
+.player__wrapper {
+  &.active .player__splash {
+    display: none;
+  }
+}
+
+.player__controls {
+  opacity: 0;
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  right: 0;
+  height: 35px;
+  background: #3e3e3e;
+  max-width: 660px;
+  margin: 0 auto;
+  transition: .4s;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.player__start {
+  width: 0;
+  height: 0;
+  border: 11px solid transparent;
+  border-left-color: #626262;
+  padding: 0;
+  border-right-width: 0;
+  background: transparent;
+  position: absolute;
+  top: 5px;
+  left: 20px;
+  outline: none;
+  &.paused {
+    width: 14px;
+    height: 22px;
+    border: none;
+    &:after,
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 5px;
+      top: 0;
+      bottom: 0;
+      background: #626262;
+    }
+    &:after {
+      right: 0;
+    }
+    &:before {
+      left: 0;
+    }
+  }
+}
+
+.player__playback {
+  position: absolute;
+  height: 4px;
+  max-width: 446px;
+  width: 100%;
+  background: #626262;
+  top: 15px;
+  left: 50px;
+}
+
+.player__playback-button {
+  background: #626262;
+  border-radius: 50px;
+  border: none;
+  width: 12px;
+  height: 12px;
+  padding: 0;
+  position: absolute;
+  top: -4px;
+  transform: translateX(-50%);
+  left: 0;
+}
+
+.player__duration {
+  position: absolute;
+  top: 7px;
+  right: 20px;
+  color: #626262;
+  font-weight: bold;
 }

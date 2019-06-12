@@ -1,5 +1,4 @@
-(function() {
-  const buttonMore = document.querySelectorAll('.more-review'),
+  ;const buttonMore = document.querySelectorAll('.more-review'),
     buttonRead = document.querySelectorAll('.read-review'),
     reviewSection = document.querySelector('.reviews'),
     reviewPopup = document.querySelectorAll('.review__popup'),
@@ -47,5 +46,4 @@
       });
     });
 
-  };
-})()
+};

@@ -13,6 +13,7 @@ uglify = require('gulp-uglify'),
 svgo = require('gulp-svgo'),
 svgSprite = require('gulp-svg-sprite'),
 gulpif = require('gulp-if'),
+del = require('del'),
 env = process.env.NODE_ENV;
 sass.compiler = require('node-sass');
 const {DIST_PATH, 
@@ -42,9 +43,7 @@ task('copy:fonts', () => {
 // IMAGES ADD
 
 task('copy:images', () => {
-  return src([`!${SRC_PATH}/img/icons/**/*`,
-  `${SRC_PATH}/img/**/*`, 
-  `!${SRC_PATH}/img/*.svg`])
+  return src(['!./src/img/icons/',`${SRC_PATH}/img/**/*`])
     .pipe(dest(`${DIST_PATH}/img/`));
 })
 
@@ -100,7 +99,7 @@ task('icons', () => {
     .pipe(dest(`${DIST_PATH}/img`))
 })
 
-task('server', function () {
+task('server', () => {
   browserSync.init({
     server: {
       baseDir: `./${DIST_PATH}`
@@ -108,6 +107,12 @@ task('server', function () {
     open: false
   });
 });
+
+// task('delete', () => {
+//     const deletedPaths = del([`${DIST_PATH}/img/icons`], { dryRun: true });
+
+//     // console.log('Files and folders that would be deleted:\n', deletedPaths.join('\n'));
+// })
 
 task('watch', () => {
   watch(`./${SRC_PATH}/styles/**/*.scss`, series('styles'));
@@ -129,6 +134,6 @@ task(
   'build',
   series('clean',
   parallel('copy:html', 'copy:fonts', 'copy:svg',
-  'copy:images' , 'styles', 'scripts', 'icons')
+  'copy:images' , 'styles', 'scripts', 'icons'),
   )
 );

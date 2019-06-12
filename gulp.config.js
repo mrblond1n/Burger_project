@@ -9,5 +9,4 @@ module.exports = {
     "node_modules/jquery-touchswipe/jquery.touchSwipe.js",
     "node_modules/mobile-detect/mobile-detect.js"
   ]
-  
 }

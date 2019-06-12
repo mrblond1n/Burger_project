@@ -1,5 +1,4 @@
-(function() {
-  const form = document.querySelector('#form-order'),
+  ;const form = document.querySelector('#form-order'),
     orderButton = document.querySelector('#orderButton'),
     xhr = new XMLHttpRequest(),
     successOrder = document.querySelector('.success-order'),
@@ -125,4 +124,3 @@
       requiredItems[i].classList.remove('required--active');
     }
   });
-})()

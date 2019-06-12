@@ -1,5 +1,4 @@
-(function() {
-  const toLeft = document.querySelector('.burger-slider__arrow-left'),
+  ;const toLeft = document.querySelector('.burger-slider__arrow-left'),
     toRight = document.querySelector('.burger-slider__arrow-right'),
     sliderList = document.querySelector('.burger-slider__list'),
     sliderItem = document.querySelectorAll('.burger-slider__item'),
@@ -31,4 +30,3 @@
 
     sliderList.style.transform = 'translateX(' + count + '%)';
   });
-})()

@@ -1,5 +1,4 @@
-(function() {
-  const menu = document.querySelector('.menu'),
+  ;const menu = document.querySelector('.menu'),
     accoItem = document.querySelectorAll('.acco-menu__item');
 
   menu.addEventListener('click', function (e) {
@@ -24,4 +23,3 @@
       }
     });
   };
-})()

@@ -1,5 +1,5 @@
-(function() {
-  const teamMenu = document.querySelector('.team'),
+
+  ;const teamMenu = document.querySelector('.team'),
     memberCard = document.querySelectorAll('.member__card');
 
   teamMenu.addEventListener('click', function () {
@@ -23,4 +23,3 @@
       }
     });
   };
-})()
