@@ -46,7 +46,8 @@
 }
 
 .player__controls {
-  opacity: 0;
+  display: flex;
+  opacity: 1;
   position: absolute;
   bottom: 5px;
   left: 0;
@@ -62,16 +63,15 @@
 }
 
 .player__start {
+  top: 20%;
+  margin-left: 20px;
   width: 0;
   height: 0;
   border: 11px solid transparent;
   border-left-color: #626262;
-  padding: 0;
   border-right-width: 0;
   background: transparent;
-  position: absolute;
-  top: 5px;
-  left: 20px;
+  position: relative;
   outline: none;
   &.paused {
     width: 14px;
@@ -97,13 +97,42 @@
 }
 
 .player__playback {
-  position: absolute;
+  position: relative;
+  top: 45%;
+  margin: 0 20px;
   height: 4px;
-  max-width: 446px;
+  max-width: 350px;
   width: 100%;
   background: #626262;
-  top: 15px;
-  left: 50px;
+}
+
+.player__mute {
+  position: relative;
+  top: 2.5px;
+  background: transparent;
+  border: none;
+}
+
+.player__volume {
+  position: relative;
+  top: 45%;
+  margin-right: 5px;
+  height: 4px;
+  width: 100%;
+  max-width: 100px;
+  background: #626262;
+}
+
+.player__volume-button {
+  background: #626262;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  position: absolute;
+  left: 20px;
+  bottom: -4px;
+  transform: translateX(-50%);
 }
 
 .player__playback-button {
@@ -112,7 +141,6 @@
   border: none;
   width: 12px;
   height: 12px;
-  padding: 0;
   position: absolute;
   top: -4px;
   transform: translateX(-50%);
@@ -120,9 +148,10 @@
 }
 
 .player__duration {
-  position: absolute;
+  position: relative;
+  display: flex;
   top: 7px;
-  right: 20px;
+  margin: 0 10px;
   color: #626262;
   font-weight: bold;
 }

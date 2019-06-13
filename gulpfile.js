@@ -76,7 +76,7 @@ task('scripts', () => {
     .pipe(babel({
       presets: ['@babel/env']
     }))
-    .pipe(gulpif(env === 'dev', uglify()))
+    .pipe(gulpif(env === 'prod', uglify()))
     .pipe(gulpif(env === 'dev', sourcemaps.write()))
     .pipe(dest(DIST_PATH))
     .pipe(reload({ stream: true }));

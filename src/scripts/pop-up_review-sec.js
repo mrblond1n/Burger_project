@@ -2,14 +2,12 @@
     buttonRead = document.querySelectorAll('.read-review'),
     reviewSection = document.querySelector('.reviews'),
     reviewPopup = document.querySelectorAll('.review__popup'),
-    popUpMessanges = document.querySelector('.popUp-messanges');
+    popUpMessanges = document.querySelector('.popUp-messanges'),
+    fieldPopup = document.querySelector('.review__popup--active');
 
   for (let i = 0; i < buttonMore.length; i++) {
     buttonMore[i].addEventListener('click', function (e) {
       e.preventDefault();
-      document.querySelector('.wrapper').addEventListener('wheel', () => {
-        return false;
-      })
 
       let newDiv = document.createElement('div');
       newDiv.innerHTML = reviewPopup[i].innerHTML;
@@ -22,7 +20,7 @@
         newDiv.children[0].classList.remove('review__content--active');
         newDiv.remove();
         document.body.classList.remove('lock');
-      })
+      });
     });
 
   };
@@ -43,7 +41,6 @@
         newDiv.children[0].classList.remove('review__content--active');
         newDiv.remove();
         document.body.classList.remove('lock');
-      });
+      });     
     });
-
 };

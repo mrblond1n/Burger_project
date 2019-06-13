@@ -34,6 +34,7 @@ function onPlayerStateChange(event) {
 }
 
 function onPlayerReady() {
+  player.setVolume('20');
   const durationInSeconds = player.getDuration();
   let interval;
 
@@ -86,6 +87,37 @@ $('.player__playback').on('click', e => {
 
   player.seekTo(newPlayerTime);
 });
+
+$('.player__volume').on('click', e=> {
+  e.preventDefault();
+
+  const
+  bar = $(e.currentTarget),
+  newButtonPos = e.pageX - bar.offset().left;
+
+  $('.player__volume-button').css({
+    left: `${newButtonPos}%`
+  });
+
+  player.setVolume(newButtonPos);
+});
+
+function editVolume() {
+  if (player.getVolume() == 0) {
+    player.setVolume('50');
+    $('.player__volume-button').css({
+      left: '50%'
+    });
+  } else {
+    player.setVolume('0');
+    $('.player__volume-button').css({
+      left: 0
+    });
+  }
+}
+
+$('.player__mute').on('click', editVolume);
+
 
 $('.player__splash').on('click', e => {
   player.playVideo();
