@@ -44,3 +44,11 @@
       });     
     });
 };
+
+document.addEventListener('keyup', e => {
+
+  if (e.keyCode === 27) {
+    document.querySelectorAll('.review__popup--active').length === 1 ? 
+      document.querySelector('.review__popup--active').classList.remove('review__popup--active') : 0;
+  }
+})

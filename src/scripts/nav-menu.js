@@ -16,3 +16,10 @@ navMenuList = document.body.querySelector('.nav-menu-fullscreen')
     navMenuList.classList.add('deactive');
     document.body.classList.remove('lock');
   });
+
+  document.addEventListener('keyup', e => {
+    if (e.keyCode === 27) {
+      navMenuList.classList.add('deactive');
+      document.body.classList.remove('lock');
+    }
+  })
