@@ -22,4 +22,4 @@ navMenuList = document.body.querySelector('.nav-menu-fullscreen')
       navMenuList.classList.add('deactive');
       document.body.classList.remove('lock');
     }
-  })
+  });

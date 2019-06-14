@@ -50,6 +50,12 @@
           failedOrder.style.display = "none";
           document.body.classList.remove('lock');
         });
+        document.addEventListener('keyup', e => {
+          if (e.keyCode === 27) {
+            failedOrder.style.display = "none";
+            document.body.classList.remove('lock');
+          }
+        })
       };
     };
   };
