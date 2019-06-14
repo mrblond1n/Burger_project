@@ -32,6 +32,7 @@
   transition: .4s;
   @include laptops {
     text-align: center;
+    margin: auto;
   }
 }
 
@@ -39,6 +40,9 @@
   margin-top: 5px;
   color: #fff;
   transition: .4s;
+  @include laptops {
+    margin-top: 30px;
+  }
 }
 
 .member__name {
