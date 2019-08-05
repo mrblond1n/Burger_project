@@ -1,61 +1,101 @@
-const { src, dest, task, series, watch, parallel } = require('gulp'),
-rm = require('gulp-rm'),
-sass = require('gulp-sass'),
-concat = require('gulp-concat'),
-browserSync = require('browser-sync').create(),
-reload = browserSync.reload,
-sassGlob = require('gulp-sass-glob'),
-autoprefixer = require('gulp-autoprefixer'),
-cleanCSS = require('gulp-clean-css'),
-sourcemaps = require('gulp-sourcemaps'),
-babel = require('gulp-babel'),
-uglify = require('gulp-uglify'),
-svgo = require('gulp-svgo'),
-svgSprite = require('gulp-svg-sprite'),
-gulpif = require('gulp-if'),
-del = require('del'),
-env = process.env.NODE_ENV;
+const {
+  src,
+  dest,
+  task,
+  series,
+  watch,
+  parallel
+} = require('gulp'),
+  rm = require('gulp-rm'),
+  sass = require('gulp-sass'), // компиляция cscc в css
+  concat = require('gulp-concat'), // конкатенация
+  browserSync = require('browser-sync').create(), //синхронизация страницы
+  reload = browserSync.reload, //автоматическое обновление страницы от изменений в проекте
+  sassGlob = require('gulp-sass-glob'), // импорт всех scss файлов в один main.scss
+  autoprefixer = require('gulp-autoprefixer'), // автопрефиксер
+  cleanCSS = require('gulp-clean-css'), // минификация css кода
+  sourcemaps = require('gulp-sourcemaps'), // добавление путей
+  babel = require('gulp-babel'), // компилятор js кода для устаревших браузеров
+  uglify = require('gulp-uglify'), // минификация js кода
+  svgo = require('gulp-svgo'), // оптимизация svg картинок (Например, удаление ненужных аттрибутов)
+  svgSprite = require('gulp-svg-sprite'), // создание Sprite для svg
+  pug = require('gulp-pug'), // компиляция pug в html
+  gulpif = require('gulp-if'), // добавление условий в gulp для разделения проекта
+  env = process.env.NODE_ENV; // добавление переменных в package.json в "scripts" для разделения проекта
 sass.compiler = require('node-sass');
-const {DIST_PATH, 
-  SRC_PATH, 
-  STYLES_LIBS, 
-  SCRIPT_LIBS} = require('./gulp.config');
+const {
+  DIST_PATH, // добавление путей и библиотек в gulp
+  SRC_PATH,
+  STYLES_LIBS,
+  SCRIPT_LIBS
+} = require('./gulp.config');
+
+// CLEAN DIST FOLDER
 
 task('clean', () => {
-  return src(`${DIST_PATH}/**/*`, { read: false }).pipe(rm());
+  return src(`${DIST_PATH}/**/*`, {
+    read: false
+  }).pipe(rm());
 });
 
-//PAGE ADD
+//HTML ADD
 
-task('copy:html', () => {
+task('html', () => {
   return src(`${SRC_PATH}/*.html`)
     .pipe(dest(DIST_PATH))
-    .pipe(reload({stream: true}));
+    .pipe(reload({
+      stream: true
+    }));
+});
+
+// PUG ADD
+
+task('pug-main', () => {
+  return src(`${SRC_PATH}/pug/pages/index.pug`)
+    .pipe(pug({
+      pretty: true,
+    }))
+    .pipe(dest(DIST_PATH))
+    .pipe(reload({
+      stream: true
+    }));
+});
+
+task('pug-pages', () => {
+  return src([
+      `${SRC_PATH}/pug/pages/*.pug`,
+      `!${SRC_PATH}/pug/pages/index.pug`
+    ])
+    .pipe(pug({
+      pretty: true,
+    }))
+    .pipe(dest(`${DIST_PATH}/assets/pages/`))
+    .pipe(reload({
+      stream: true
+    }));
 });
 
 //FONTS ADD
 
-task('copy:fonts', () => {
-  return src(`${SRC_PATH}/fonts/*`)
-    .pipe(dest(`${DIST_PATH}/fonts`));
-})
+task('fonts', () => {
+  return src(`${SRC_PATH}/fonts/**/*`)
+    .pipe(dest(`${DIST_PATH}/assets/fonts`));
+});
 
 // IMAGES ADD
 
-task('copy:images', () => {
-  return src(['!./src/img/icons/',`${SRC_PATH}/img/**/*`])
-    .pipe(dest(`${DIST_PATH}/img/`));
-})
-
-task('copy:svg', ()=> {
-  return src(`${SRC_PATH}/img/*.svg`)
-    .pipe(dest(`${DIST_PATH}/img`));
+task('images', () => {
+  return src(`${SRC_PATH}/img/**/*`)
+    .pipe(dest(`${DIST_PATH}/assets/img/`));
 });
+
+//CSS ADD
 
 task('styles', () => {
   return src([...STYLES_LIBS,
-    `${SRC_PATH}/styles/*.scss`, 
-    `${SRC_PATH}/styles/**/*.scss`])
+      `${SRC_PATH}/styles/*.scss`,
+      `${SRC_PATH}/styles/**/*.scss`
+    ])
     .pipe(gulpif(env === 'dev', sourcemaps.init()))
     .pipe(concat('main.min.scss'))
     .pipe(sassGlob())
@@ -65,29 +105,41 @@ task('styles', () => {
     })))
     .pipe(gulpif(env === 'prod', cleanCSS()))
     .pipe(gulpif(env === 'dev', sourcemaps.write()))
-    .pipe(dest(DIST_PATH))
-    .pipe(reload({stream: true}));
+    .pipe(dest(`${DIST_PATH}/assets/`))
+    .pipe(reload({
+      stream: true
+    }));
 });
 
+// SCRIPTS ADD
+
 task('scripts', () => {
-  return src([...SCRIPT_LIBS, `${SRC_PATH}/scripts/*.js`])
+  return src([...SCRIPT_LIBS, `${SRC_PATH}/scripts/**/*.js`])
     .pipe(gulpif(env === 'dev', sourcemaps.init()))
-    .pipe(concat('main.min.js', {newLine: ';'}))
+    .pipe(concat('main.min.js', {
+      newLine: ';'
+    }))
     .pipe(babel({
       presets: ['@babel/env']
     }))
     .pipe(gulpif(env === 'prod', uglify()))
     .pipe(gulpif(env === 'dev', sourcemaps.write()))
-    .pipe(dest(DIST_PATH))
-    .pipe(reload({ stream: true }));
+    .pipe(dest(`${DIST_PATH}/assets/`))
+    .pipe(reload({
+      stream: true
+    }));
 });
 
+// CREATE SVG SPRITE
+
 task('icons', () => {
-  return src(`${SRC_PATH}/img/icons/*.svg`)
+  return src(`${SRC_PATH}/img/**/*.svg`)
     .pipe(svgo({
-      plugins: [
-        {removeAttrs: {attrs:['fill', 'stroke', 'style']}}
-      ]
+      plugins: [{
+        removeAttrs: {
+          attrs: ['fill', 'stroke', 'style']
+        }
+      }]
     }))
     .pipe(svgSprite({
       mode: {
@@ -96,8 +148,10 @@ task('icons', () => {
         }
       }
     }))
-    .pipe(dest(`${DIST_PATH}/img`))
-})
+    .pipe(dest(`${DIST_PATH}/assets/img/`))
+});
+
+// START SERVER
 
 task('server', () => {
   browserSync.init({
@@ -108,32 +162,36 @@ task('server', () => {
   });
 });
 
-// task('delete', () => {
-//     const deletedPaths = del([`${DIST_PATH}/img/icons`], { dryRun: true });
-
-//     // console.log('Files and folders that would be deleted:\n', deletedPaths.join('\n'));
-// })
+// TURN ON WATCHERS
 
 task('watch', () => {
   watch(`./${SRC_PATH}/styles/**/*.scss`, series('styles'));
-  watch(`./${SRC_PATH}/*.html`, series('copy:html'));
+  watch(`./${SRC_PATH}/*.html`, series('html'));
+  watch(`./${SRC_PATH}/pug/**/*.pug`, series('pug-pages'));
+  watch(`./${SRC_PATH}/pug/pages/index.pug`, series('pug-main'));
   watch(`./${SRC_PATH}/scripts/*.js`, series('scripts'));
   watch(`./${SRC_PATH}/img/icons/*.svg`, series('icons'));
-})
+});
+
+// DEV
 
 task(
   'default',
   series('clean',
-  parallel('copy:html', 'copy:fonts', 'copy:svg', 
-  'copy:images', 'styles', 'scripts', 'icons'), 
-  parallel('watch', 'server')
+    parallel('html',
+      // 'pug-pages', 'pug-main',
+      'fonts', 'images', 'styles', 'scripts', 'icons'),
+    parallel('watch', 'server')
   )
 );
+
+// BUILD
 
 task(
   'build',
   series('clean',
-  parallel('copy:html', 'copy:fonts', 'copy:svg',
-  'copy:images' , 'styles', 'scripts', 'icons'),
+    parallel('html',
+      // 'pug-main', 'pug-pages', 
+      'fonts', 'images', 'styles', 'scripts', 'icons')
   )
 );
